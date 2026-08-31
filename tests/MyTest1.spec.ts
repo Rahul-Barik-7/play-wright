@@ -17,6 +17,6 @@ test ("Verify the page title", async ({page})=>{
     //promise means - every statement return a promise like Resolved or rejected so we need o add await
     await page.goto("https://www.youtube.com/");
     let mytitle: string = await page.title();
-    console.log("Title: ",mytitle);
+    console.log("Title of this page : ",mytitle);
     await expect(page).toHaveTitle("YouTube")
 })
