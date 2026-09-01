@@ -1,9 +1,0 @@
-4 Ways to create test
-======================
-1. manully test creation 
-2. test Runner (codegen) - npx playwright codegen https://demowebshop.tricentis.com/
-3. vs code extension
-4. Using MCP(AI)
-5. using playwright Agents- Releted to AI
-
-note: using 2 and 3 we cannot achieve Page object Model pattern

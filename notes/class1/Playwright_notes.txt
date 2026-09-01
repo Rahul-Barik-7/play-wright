@@ -1,0 +1,87 @@
+Playwright
+----------
+Playwright is an open-source tool developed by Microsoft for automating web browser testing.
+Apart from browser automation, Playwright also supports API testing for validating backend services.
+It is mainly used for end-to-end testing of web applications.
+Playwright was released in 2020.
+It is an open-source Node.js library.
+
+
+Playwright Vs Selenium
+
+
+Playwright Architecture 
+----------------------
+ Easy Analogy
+•	You = Customer 👨‍💻 
+•	Playwright API = Waiter 🍽️ 
+•	WebSocket = Communication line 📡 
+•	Browser = Kitchen 👨‍🍳 
+•	Browser Context = Separate table 🍴 
+•	App = Food 🍕 
+
+
+Real Browsers vs Rendering Engines 
+---------------------------------
+
+Chromium, firefox and webkit are rendering browser engines (Not real browsers).
+
+Real browsers are developed using rendering engines:
+
+
+•	Chromium engine is used in Google Chrome, Microsoft Edge, Brave and Opera.
+•	Webkit engine is used in Safari.
+•	Gecko engine is used in Firefox
+
+
+
+System requirements:
+-----------------------------------------
+Node.js: latest 22.x, 24.x or 26.x.
+Windows 11+, Windows Server 2019+ or Windows Subsystem for Linux (WSL).
+macOS 14 (Sonoma) or later.
+Debian 12 / 13, Ubuntu 22.04 / 24.04 / 26.04 (x86-64 or arm64).
+
+
+Pre-requisites
+---------------------------
+1.	Install Node.js
+2.	Install VS Code
+3.	Create and open a project folder in VSCode
+
+------
+Playwright installation
+ npm init playwright@latest
+
+check the version:
+	npx playwright --version
+
+to run the test:
+
+	npx playwright test <file name>
+
+
+
+headless mode --- default execution ( without opening browsers)
+
+npx playwright test ./tests/mytest.spec.ts --headed
+
+
+4 Ways to create test
+======================
+1. manully test creation 
+2. test Runner (codegen) - npx playwright codegen https://demowebshop.tricentis.com/
+3. vs code extension
+4. Using MCP(AI)
+5. using playwright Agents- Releted to AI
+
+note: using 2 and 3 we cannot achieve Page object Model pattern
+
+
+
+
+
+
+
+
+
