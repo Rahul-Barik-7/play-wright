@@ -1,0 +1,1 @@
+1. getByRole()  is prefferable for actionable items like button, checkbox, radio
