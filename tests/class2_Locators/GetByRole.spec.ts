@@ -1,6 +1,6 @@
 import {test ,expect} from "@playwright/test"
 
-test ("playwright Locators", async ({page})=> {
+test ("Playwright test - getByRole", async ({page})=> {
     await page.goto("https://testautomationpractice.blogspot.com/")
 
     /* 
@@ -12,6 +12,9 @@ test ("playwright Locators", async ({page})=> {
 
     const pageLink = page.getByRole('link',{name:'Data Entry Form'});
     await expect(pageLink).toBeVisible();
+
+    const newTabButton = page.getByRole("button", {name: 'New Tab'});
+    await expect(newTabButton).toBeVisible();
     
     const dynamicButton = page.getByRole('button',{name:'START'});
     await expect(dynamicButton).toBeVisible();
