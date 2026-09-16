@@ -6,7 +6,7 @@ test ("Playwright test - getByRole", async ({page})=> {
     /* 
         1. getByRole() is a Playwright locator used to find an element on a web page based on its accessible role and, optionally, its visible name.
         2. Syntax : page.getByRole("role", { name: "element name" })
-        3. Use getByRole() when you want to interact with common user-facing UI elements, such as: (button, heading, checkbox, link etc)
+        3. getByRole()  is prefferable for actionable items like button, checkbox, radio
 
     */
 
