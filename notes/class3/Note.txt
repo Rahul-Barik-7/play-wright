@@ -1,0 +1,18 @@
+/* ======================================================
+    Playwright Locator Filters 
+
+    1. This is especially useful when you have duplicate elements. it  matching multiple elements to find the exact element you want.
+    
+
+    1.Verify "Add to cart" for Mouse 
+    2.Count items not having "Out of stock"
+    3.Find items with "In stock"
+    4.Verify elements using data-testid
+    5.Count all elements with test ids
+    6.Find "Say goodbye" button for John
+    7.Find "Say hello" button for Mary
+    8.Find "Subscribe" buttons using multiple conditions
+    9.Find "details" buttons for done tasks
+    10.Verify stock status counts
+
+======================================================*/
