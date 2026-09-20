@@ -1,0 +1,48 @@
+*
+CSS (Cascading Style Sheets) 
+===========================================
+
+A web page is built using:
+  HTML (Structure)
+  CSS (Styling)
+  JavaScript (Behavior)
+
+Types of CSS Locators
+-------------------------------------------
+1) Absolute CSS Locator  (Not commonly used)
+2) Relative CSS Locator  (Most commonly used)
+
+
+Absolute CSS (Never prefer):
+html > body > div:nth-of-type(4) > div > div > div:nth-of-type(3) > form > input[id="small-searchterms"]
+
+
+Common CSS Selector Patterns
+-------------------------------------------
+
+tag with id
+   tag#id    OR    #id
+
+tag with class
+   tag.class   OR   .class
+
+tag with attribute
+   tag[attribute=value]   OR   [attribute=value]
+
+tag with class + attribute
+   tag.class[attribute=value]   OR   .class[attribute=value]
+
+In Playwright Syntax:
+page.locator("css_selector")
+
+Some more Advanced CSS:
+---------
+Contains    *
+Starts-with ^
+Ends with  $
+Child Selector (parent > child)
+Descendant Selector (parent child)
+
+
+-------------------------------------------
+*/
