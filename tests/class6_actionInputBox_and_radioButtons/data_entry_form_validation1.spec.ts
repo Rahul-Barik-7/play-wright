@@ -8,9 +8,9 @@ test.describe("Data entry form validation", () => {
         //await expect(page.getByText("AutoPlay")).toBeVisible();
     });
 
-    test.afterEach(async ({ page }) => {
-        await page.close();
-    });
+    // test.afterEach(async ({ page }) => {
+    //     await page.close();
+    // });
 
     //1. page load validation
     test("1. Page load validation", async ({ page }) => {
@@ -58,6 +58,24 @@ test.describe("Data entry form validation", () => {
         await address_text_area.fill("Bhubaneswar, \n Odisha, India");
         await expect(address_text_area).toHaveValue("Bhubaneswar, \n Odisha, India");
 
+        //page.waitForTimeout(2000);
+
     });
+
+    test("3. Radio Button validation", async({page})=>{
+        //locating element
+        const maleRadioButton = page.getByLabel("Male", {exact: true});
+        const femaleRadioButton = page.getByLabel("Female", {exact: true});
+        //Button should be visible
+        await expect(maleRadioButton).toBeVisible();
+        await expect(femaleRadioButton).toBeVisible();
+
+        //selecting male radio button
+        await maleRadioButton.check();
+
+        //verify male radio button should be cheked and female should not be checked
+        await expect(maleRadioButton).toBeChecked();
+        await expect(femaleRadioButton).not.toBeChecked();
+    })
 });
 

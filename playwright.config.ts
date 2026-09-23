@@ -53,6 +53,28 @@ export default defineConfig({
 
     // {
     //   name: 'firefox',
+    //   use: {
+    //     browserName: 'firefox',
+    //     viewport: null,
+    //     launchOptions: {
+    //       args: ['--kiosk'],
+    //     },
+    //   },
+    // },
+
+    // {
+    //   name: 'webkit',
+    //   use: {
+    //     browserName: 'webkit',
+    //     viewport: null,
+    //     launchOptions: {
+    //       args: ['--fullscreen'],
+    //     },
+    //   },
+    // },
+
+    // {
+    //   name: 'firefox',
     //   use: { ...devices['Desktop Firefox'] },
     // },
 
