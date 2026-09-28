@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test"
+import { test, expect, errors } from "@playwright/test"
 
 const dataEntryFormUrl: string = "https://sdetqa.vercel.app/autoplay";
 
@@ -8,9 +8,9 @@ test.describe("Data entry form validation", () => {
         //await expect(page.getByText("AutoPlay")).toBeVisible();
     });
 
-    // test.afterEach(async ({ page }) => {
-    //     await page.close();
-    // });
+    test.afterEach(async ({ page }) => {
+        await page.close();
+    });
 
     //1. page load validation
     test("1. Page load validation", async ({ page }) => {
@@ -92,10 +92,10 @@ test.describe("Data entry form validation", () => {
 
         const allDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
-        
+
         //with map()
         //creating a map which will reurn all the locators of getByLabel()
-        const allCheckBoxes = allDays.map((days)=>{
+        const allCheckBoxes = allDays.map((days) => {
             return page.getByLabel(days);
         })
 
@@ -104,7 +104,7 @@ test.describe("Data entry form validation", () => {
         //     await checkboxes.check();
         //     await expect(checkboxes).toBeChecked();
         // } 
-       
+
 
         //without using map()
         /* 
@@ -141,13 +141,102 @@ test.describe("Data entry form validation", () => {
         */
 
         //Select checkboxes using index (1,3,6 → Tue, Thu, Sun) and Only those indexes should be checked
-        const checkboxindexs:number[] = [0, 1, 2];
-        for(const indexes of checkboxindexs){
+        const checkboxindexs: number[] = [0, 1, 2];
+        for (const indexes of checkboxindexs) {
             await allCheckBoxes[indexes].check();   //using allCheckBoxes from map() which is having all the checkboxs getByLabel() and then extracting only selected indexes
             await expect(allCheckBoxes[indexes]).toBeChecked();
         }
-
-
     });
+
+    //submit button validation
+    test("5. Submit button Validation", async ({ page }) => {
+        const submitButton = page.getByRole('button', { name: "Submit" }).first();
+        await expect(submitButton).toBeVisible();
+        await submitButton.click();
+        await expect(submitButton).toBeEnabled();
+    })
+
+
+    //fiedl level functional validation
+    test("6. fiedl level functional validation", async ({ page }) => {
+        const full_name_text_filed = page.getByLabel("Full name");
+        const email_text_filed = page.getByLabel("Email");
+        const phone_text_filed = page.getByLabel("Phone");
+        const address_text_area = page.getByLabel("Address");
+        const submitButton = page.getByRole('button', { name: "Submit" }).first();
+
+        let errorMessage = page.locator("#formErrors");
+
+        //leave all the field empty and click on submit button and then check the error message shoudl be displayed
+        await full_name_text_filed.clear();
+        await email_text_filed.clear();
+        await phone_text_filed.clear();
+        await address_text_area.clear();
+
+        await submitButton.click();
+        await expect(errorMessage).toBeVisible();
+        await expect(errorMessage).toContainText("Please fix the following:");
+    });
+
+    //Enter invalid email format Error should be shown
+    test("7. Email validation", async ({ page }) => {
+        const email_text_filed = page.getByLabel("Email");
+        let errorMessage = page.locator("#formErrors");
+        const submitButton = page.getByRole('button', { name: "Submit" }).first();
+
+        await email_text_filed.fill("abcd.com");
+        await submitButton.click();
+        
+        await expect(errorMessage).toBeVisible();
+        await expect(errorMessage).toContainText("Please enter a valid email address.");
+    
+    })
+
+
+    //Enter more than 15 chars in name Input should be restricted
+    test("7. Enter more than 15 chars in name Input should be restricted", async ({ page }) => {
+        const full_name_text_filed = page.getByLabel("Full name");
+        await full_name_text_filed.fill("ABCD123456789ABXYZ");
+
+        //await expect(full_name_text_filed).toHaveValue("ABCD123456789AB");
+        await expect(full_name_text_filed).toHaveValue(/.{15}/) ///using regular expression
+
+    })
+
+    //Enter alphabets in phone field Should be restricted (if validation exists)
+    test("8. Enter alphabets in phone field Should be restricted (if validation exists)", async ({ page }) => {
+        
+        const phone_text_filed = page.getByLabel("Phone");
+        await phone_text_filed.fill("123ABCDABXYZ456");
+
+        await expect(phone_text_filed).toHaveValue(/^[^A-Za-z]*$/) ///using regular expression
+        
+    })
+    //Regular expresion
+/*
+1. / ... /
+These are just delimiters used in many languages (like JavaScript) to define a regex.
+
+2. ^ (Start anchor) : Ensures the match starts from the beginning of the string
+
+3. [^A-Za-z]
+This is a negated character class
+A-Za-z → all uppercase and lowercase English letters
+[^A-Za-z] → anything that is NOT a letter
+
+✅ Matches:
+
+Digits (0-9)
+Symbols (@ # $ %)
+Spaces
+Special characters
+
+❌ Does NOT match:
+
+A–Z
+a–z
+
+*/
+
 });
 
