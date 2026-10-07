@@ -1,0 +1,33 @@
+diff between (...)Rest Parameter   & [...]Spread Operator
+=========================================================
+
+1. The Action Trick (Pack vs. Unpack)
+• Spread = Unpacks. It takes a single packed box (an array) and spreads the contents out on the floor.
+• Rest = Packs. It takes the rest of the loose items lying around and gathers them up into a single box (an array).
+
+
+2. The Location Trick (Inputs vs. Outputs)
+Look at where the ... is being used:
+• If it is inside the function brackets () where you receive inputs → it is Rest (gathering inputs).
+• If it is inside the array brackets [] where you create outputs → it is Spread (expanding data).
+
+
+3. The Sentence Trick
+• “Give me the rest of the ingredients.” (You gather multiple items together into one pile → Rest Parameter).
+• “Spread the butter across the toast.” (You take one chunk of butter and flatten it out → Spread Operator).
+
+
+Individual Definitions
+========================
+Spread Operator
+• Interview Definition: Used inside array or object literals to expand or copy elements.
+• Keywords to Use: Unpacking, cloning, shallow copy.
+• Code Snippet: const clone = [...original];
+
+Rest Parameter
+• Interview Definition: Used inside function signatures to handle an indefinite number of arguments.
+• Keywords to Use: Gathering, function arguments, packing.
+• Code Snippet: function sum(...numbers) {}
+
+
+"If it's inside a function parameter list, it's Rest. Anywhere else, it's Spread."
